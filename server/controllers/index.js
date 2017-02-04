@@ -1,3 +1,5 @@
+//import ChannelController from './channel-controller'
+
 var ChannelController = require('./channel-controller');
 var MessageController = require('./message-controller');
 

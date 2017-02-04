@@ -3,21 +3,23 @@ var path = require('path');
 
 module.exports = {
     entry: {
-        app:'./src/main.js'
-    },
+        app:'./src/react-components/page/main.js'
+},
     output: {
         filename: 'public/build/bundle.js',
-        sourceMapFilename: 'public/build/build.map'
+        sourceMapFilename: 'public/build/bundle.map'
     },
     devtool: '#source-map',
     module: {
-        loaders: [{
-            test: /\.jsx?$/,
-            exclude: /(node_modules)/,
-            loader: 'babel-loader',
-            query: {
-                presets:['react', 'es2015']
+        loaders: [
+            {
+                test: /\.jsx?$/,
+                exclude: /(node_modules)/,
+                loader: 'babel-loader',
+                query: {
+                    presets: ['react', 'es2015']
+                }
             }
-        }]
+        ]
     }
-};
+}

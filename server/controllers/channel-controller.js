@@ -1,14 +1,14 @@
 var Channel = require('../models/channel-schema');
 
 
-module.exports = {
-    find:   find,
-    findID: findID,
-    create: create,
-    update: update,
-    remove: remove
-}
 
+module.exports = {
+    find:find,
+    findID:findID,
+    create:create,
+    update:update,
+    remove:remove
+}
 
 function find(params, callback){
     Channel.find(params, function(err, channels){
@@ -61,6 +61,9 @@ function remove(id, callback){
 }
 
 
+
+//export default ChannelController;
+
 // Try encapsulating this later
 //
 // function genericMongooseCallback(error, result, callback){
@@ -70,3 +73,4 @@ function remove(id, callback){
 //     }
 //     callback(null, result);
 // }
+

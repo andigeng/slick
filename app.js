@@ -16,8 +16,8 @@ mongoose.connect(dbURL, function(err, res){
 });
 
 
-var routes = require('./server/routes');
-var api = require('./server/routes/api');
+var routes = require('./server/routes/main-router');
+var api = require('./server/routes/api-router');
 
 var app = express();
 
