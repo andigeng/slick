@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './styles'
 
 
+
 class CreateMessage extends React.Component{
    constructor(){
         super();
@@ -30,29 +31,33 @@ class CreateMessage extends React.Component{
         return (
             <div className="form-group">
                 <span className="input-group">
-                    <button     className="btn btn-secondary btn-lg" 
-                                onClick={this.sendMessage.bind(this)}
-                                style={{fontSize:18}}>
+                    <button     
+                        className="btn btn-secondary btn-lg" 
+                        onClick={this.sendMessage.bind(this)}
+                        style={{fontSize:18}}>
                         Send 
                     </button>
-                    <textarea   className="form-control form-horizontal"
-                                value={this.state.message.body}
-                                onChange={this.updateMessage.bind(this)} 
-                                rows="1"
-                                style={{fontSize:18}}
-                                placeholder="Enter your message here!"
-                                id="body"/>
+                    <textarea
+                        className="form-control form-horizontal"
+                        value={this.state.message.body}
+                        onChange={this.updateMessage.bind(this)} 
+                        rows="1"
+                        style={{fontSize:18}}
+                        placeholder="Enter your message here!"
+                        id="body"/>
                 </span>
                 <br />
                 Placeholder inputs: login has yet to be implemented
-                <input  className="form-control"
-                        value={this.state.message.name}
-                        onChange={this.updateMessage.bind(this)} 
-                        placeholder="Temporary name"
-                        id="name" /> 
+                <input  
+                    className="form-control"
+                    value={this.state.message.name}
+                    onChange={this.updateMessage.bind(this)} 
+                    placeholder="Temporary name"
+                    id="name" /> 
             </div>
         );
     }
 }
+
 
 export default CreateMessage;

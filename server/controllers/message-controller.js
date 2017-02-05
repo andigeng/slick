@@ -36,11 +36,14 @@ function create(params, callback){
             callback(err, null);
             return;
         }
+        console.log(message);
         callback(null, message);
     })
 }
 
 function update(id, params, callback){
+    console.log('#####################################');
+    console.log('UPDATED PARAMS: ', params);
     Message.findByIdAndUpdate(id, params, {new:true}, function(err, message){
         if (err){
             callback(err, null);

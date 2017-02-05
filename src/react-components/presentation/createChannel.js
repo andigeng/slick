@@ -28,15 +28,17 @@ class CreateChannel extends React.Component{
         return(
             <div className="form-group">
                 <span className="input-group">
-                    <button className="btn btn-secondary"
-                            onClick={this.createChannel.bind(this)}>
+                    <button 
+                        className="btn btn-secondary"
+                        onClick={this.createChannel.bind(this)}>
                         Make
                     </button>
-                    <input  className="form-control"
-                            placeholder="New Channel"
-                            id="name"
-                            onChange={this.updateChannel.bind(this)}
-                            value={this.state.channel.name}>
+                    <input 
+                        className="form-control"
+                        placeholder="New Channel"
+                        id="name"
+                        onChange={this.updateChannel.bind(this)}
+                        value={this.state.channel.name}>
                     </input>
                 </span>
             </div>

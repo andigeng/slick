@@ -27,12 +27,12 @@ var post = (url, params, callback) => {
         .send(params)
         .set('Accept', 'application/json')
         .end((error, response) => {
-            if (error) {
+            if (error){
                 callback(error, null);
                 return;
             }
             const status = response.body.status;
-            if (status != 'success') {
+            if (status != 'success'){
                 callback({message: response.body.message}, null);
                 return;
             }
@@ -41,7 +41,24 @@ var post = (url, params, callback) => {
  }
 
 
-var put = () => {}
+var put = (url, params, callback) => {
+    superagent
+        .post(url)
+        .query(params)
+        .set('Accept', 'application/json')
+        .end((error, response) => {
+            if (error){
+                callback(error, null);
+                return;
+            }
+            const status = response.body.status;
+            if (status != 'success'){
+                callback({message: response.body.message}, null);
+                return;
+            }
+            callback(null, response.body);
+        });
+}
 
 
 export default {

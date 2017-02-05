@@ -26,7 +26,6 @@ router.get('/:resource/:id', function(req, res, next){
     var resource = req.params.resource;
     var id = req.params.id;
     var controller = controllers[resource];
-
     controller.findID(id, function(error, results){
         if (error){
             res.json({
@@ -44,7 +43,7 @@ router.get('/:resource/:id', function(req, res, next){
 
 
 router.post('/:resource', function(req, res, next){
-    var resource = req.params.resource
+    var resource = req.params.resource;
     var controller = controllers[resource];
     controller.create(req.body, function(error, result){
         if (error){
@@ -60,6 +59,28 @@ router.post('/:resource', function(req, res, next){
         });
     });
 
+});
+
+router.post('/:resource/:id', function(req, res, next){
+    var resource = req.params.resource;
+    var id = req.params.id;
+    var controller = controllers[resource];
+    var query = req.query;
+    console.log('\n\n',id);
+    console.log('QUERY FROM ROUTER POST', query, '\n\n');
+    controller.update(id, query, function(error, result){
+        if (error){
+            res.json({
+                status:'fail',
+                message: error
+            });
+            return;
+        }
+        res.json({
+            status: 'success',
+            result: null
+        })
+    });
 });
 
 
