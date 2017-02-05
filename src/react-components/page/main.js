@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Messages, Channels } from '../container';
+import { Messages, Channels } from '../container'
 
 
-class MainChat extends React.Component {
+class MainChat extends React.Component{
     render(){
         return (
             <div className="container">
@@ -25,3 +25,5 @@ class MainChat extends React.Component {
 
 
 ReactDOM.render(<MainChat />, document.getElementById('main-chat')); 
+
+

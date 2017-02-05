@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './styles'
 
 
-class CreateMessage extends React.Component {
+class CreateMessage extends React.Component{
    constructor(){
         super();
         this.state = {
@@ -20,7 +20,7 @@ class CreateMessage extends React.Component {
     }
 
     sendMessage(){
-        this.props.onSubmit(this.state.message);
+        this.props.onSend(this.state.message);
         this.setState( {message:{name:'', body:''}});
     }
 
@@ -56,9 +56,3 @@ class CreateMessage extends React.Component {
 }
 
 export default CreateMessage;
-
-//className="form-horizontal"
-// style={{padding:'0 0 0 0', margin:'0', border:'none'}}
-
-// onClick={this.sendMessage.bind(this)}
-// onChange={this.updateMessage.bind(this)}

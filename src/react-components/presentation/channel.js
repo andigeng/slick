@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './styles';
 
 
-class Channel extends React.Component {
+class Channel extends React.Component{
     render(){
         let name = this.props.channelInfo.name;
         let style = styles.channel;

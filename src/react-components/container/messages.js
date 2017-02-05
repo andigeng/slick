@@ -1,7 +1,10 @@
 import React from 'react';
+
 import { Message, CreateMessage } from '../presentation';
-import styles from './styles';
 import { API } from '../../utils';
+
+import styles from './styles';
+
 
 
 class Messages extends React.Component {
@@ -20,7 +23,7 @@ class Messages extends React.Component {
         });
     }
 
-    submitMessage(newMessage){
+    sendMessage(newMessage){
         API.post('api/message', newMessage, (error, response) => {
             if (error){
                 console.log('ERROR: ', error);
@@ -43,12 +46,13 @@ class Messages extends React.Component {
                     {messages}
                 </ul>
                 <br />
-                <CreateMessage onSubmit={this.submitMessage.bind(this)}/>
+                <CreateMessage onSend={this.sendMessage.bind(this)}/>
             </div>
 
         );
     }
 }
+
 
 export default Messages;
 

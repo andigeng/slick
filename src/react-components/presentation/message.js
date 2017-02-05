@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './styles';
 
 
-class Message extends React.Component {
+class Message extends React.Component{
     render(){
         let name = this.props.messageInfo.name;
         let body = this.props.messageInfo.body;

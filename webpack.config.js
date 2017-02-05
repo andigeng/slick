@@ -1,10 +1,11 @@
 var webpack = require('webpack');
 var path = require('path');
 
+
 module.exports = {
     entry: {
         app:'./src/react-components/page/main.js'
-},
+    },
     output: {
         filename: 'public/build/bundle.js',
         sourceMapFilename: 'public/build/bundle.map'

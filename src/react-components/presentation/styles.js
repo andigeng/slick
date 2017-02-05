@@ -13,6 +13,7 @@ export default {
             fontSize:'15px'
         }
     },
+    
     channel: {
         selected: {
             margin: '10px',
