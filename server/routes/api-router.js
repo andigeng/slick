@@ -7,11 +7,11 @@ router.get('/:resource', function(req, res, next){
     const resource = req.params.resource;
     const controller = controllers[resource];
 
-    controller.find(req.query, function(err, results){
-        if (err){
+    controller.find(req.query, function(error, results){
+        if (error){
             res.json({
                 status:'fail',
-                message:err
+                message:error
             })
             return;
         }
@@ -23,43 +23,43 @@ router.get('/:resource', function(req, res, next){
 });
 
 router.get('/:resource/:id', function(req, res, next){
-    const resource = req.params.resource;
-    const id = req.params.id;
-    const controller = controllers[resource];
+    var resource = req.params.resource;
+    var id = req.params.id;
+    var controller = controllers[resource];
 
-    controller.findID(id, function(err, result){
-        if (err){
+    controller.findID(id, function(error, results){
+        if (error){
             res.json({
                 status:'fail',
-                message:err
-            });
-            return;
-        }
-        res.json({
-            status:'success',
-            result: result
-        });
-    });
-
-});
-
-router.post('/:resource', function(req, res, next){
-    const resource = req.params.resource;
-    const controller = controller[resource];
-
-    controller.create(req.body, function(err, result){
-        if (err){
-            res.json({
-                status:'fail',
-                message:err
+                message:error
             })
             return;
         }
         res.json({
             status:'success',
-            result: result
-        })
+            result:results
+        });
     });
+});
+
+
+router.post('/:resource', function(req, res, next){
+    var resource = req.params.resource
+    var controller = controllers[resource];
+    controller.create(req.body, function(error, result){
+        if (error){
+            res.json({
+                status: 'fail', 
+                message: error
+            });
+            return;
+        }
+        res.json({
+            status: 'success',
+            result: result
+        });
+    });
+
 });
 
 

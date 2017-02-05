@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import styles from './styles';
 
 
-class Channel extends Component {
+class Channel extends React.Component {
     render(){
         let name = this.props.channelInfo.name;
         let style = styles.channel;

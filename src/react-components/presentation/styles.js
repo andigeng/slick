@@ -1,10 +1,17 @@
 export default {
     message: {
         name: {
-            fontWeight: 'bold'
+            fontWeight: 'bold',
+            fontSize:'17px'
         },
-        timestamp: {},
-        body: {}
+        time: {
+            color: '#d6d6d6',
+            fontSize:'13px'
+        },
+        body: {
+            color: '#7d7d7d',
+            fontSize:'15px'
+        }
     },
     channel: {
         selected: {

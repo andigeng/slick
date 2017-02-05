@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import Channel from '../presentation/channel'
+import React from 'react';
+import { Channel } from '../presentation';
 import styles from './styles';
 
 
@@ -19,13 +19,14 @@ const placeholder_channels = [
 ];
 
 
-class Channels extends Component {
+class Channels extends React.Component {
     constructor(){
         super();
         this.state = { list:placeholder_channels }
     }
 
     componentDidMount(){
+
         console.log('mounted!');
         // fetch from API
     }

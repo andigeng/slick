@@ -1,17 +1,17 @@
-var Comment = require('../models/message-schema');
+var Message = require('../models/message-schema');
+
 
 
 module.exports = {
-    find:   find,
-    findID: findID,
-    create: create,
-    update: update,
-    remove: remove
+    find:find,
+    findID:findID,
+    create:create,
+    update:update,
+    remove:remove
 }
 
-
 function find(params, callback){
-    Channel.find(params, function(err, messages){
+    Message.find(params, function(err, messages){
         if (err){
             callback(err, null);
             return;
@@ -21,7 +21,7 @@ function find(params, callback){
 }
 
 function findID(id, callback){
-    Channel.findById(id, function(err, message){
+    Message.findById(id, function(err, message){
         if (err){
             callback(err, null);
             return;
@@ -31,7 +31,7 @@ function findID(id, callback){
 }
 
 function create(params, callback){
-    Channel.create(params, function(err, message){
+    Message.create(params, function(err, message){
         if (err){
             callback(err, null);
             return;
@@ -41,7 +41,7 @@ function create(params, callback){
 }
 
 function update(id, params, callback){
-    Channel.findByIdAndUpdate(id, params, {new:true}, function(err, message){
+    Message.findByIdAndUpdate(id, params, {new:true}, function(err, message){
         if (err){
             callback(err, null);
             return;
@@ -51,7 +51,7 @@ function update(id, params, callback){
 }
 
 function remove(id, callback){
-    Channel.findByIdAndRemove(id, params, function(){
+    Message.findByIdAndRemove(id, params, function(){
         if (err){
             callback(err, null);
             return;
