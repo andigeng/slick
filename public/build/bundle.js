@@ -9791,9 +9791,8 @@ var Messages = function (_React$Component) {
         key: 'componentWillReceiveProps',
         value: function componentWillReceiveProps(nextProps) {
             if (nextProps.channelId !== this.props.channelId) {
-                console.log('You should update now!');
-                this.setState({ channelId: nextProps.channelId });
                 this.populateNewList(nextProps.channelId);
+                this.setState({ channelId: nextProps.channelId });
             }
         }
     }, {
@@ -9809,18 +9808,21 @@ var Messages = function (_React$Component) {
                 }
                 var messageIdArray = response.result.messages;
                 var filledList = [];
-                for (var i = 0; i < messageIdArray.length; i++) {
-                    var messageUrl = 'api/message/' + messageIdArray[i];
-                    _utils.API.get(messageUrl, {}, function (error, response) {
-                        if (error) {
-                            console.log('FAILED' + error);
-                            return;
-                        }
-                        filledList.push(response.result);
-                        _this2.setState({ list: filledList });
-                    });
+                if (messageIdArray.length === 0) {
+                    _this2.setState({ list: [] });
+                } else {
+                    for (var i = 0; i < messageIdArray.length; i++) {
+                        var messageUrl = 'api/message/' + messageIdArray[i];
+                        _utils.API.get(messageUrl, {}, function (error, response) {
+                            if (error) {
+                                console.log('FAILED' + error);
+                                return;
+                            }
+                            filledList.push(response.result);
+                            _this2.setState({ list: filledList });
+                        });
+                    }
                 }
-                _this2.setState({ list: filledList });
             });
         }
     }, {
@@ -9833,7 +9835,7 @@ var Messages = function (_React$Component) {
                     console.log('ERROR: ', error);
                     return;
                 }
-                var updatedList = Object.assign([], _this3.state.channelId);
+                var updatedList = Object.assign([], _this3.state.list);
                 updatedList.push(response.result);
                 _this3.setState({ list: updatedList });
                 var url = 'api/channel/' + _this3.state.channelId;
@@ -24511,7 +24513,7 @@ var MainChat = function (_React$Component) {
         var _this = _possibleConstructorReturn(this, (MainChat.__proto__ || Object.getPrototypeOf(MainChat)).call(this));
 
         _this.state = {
-            channelId: '5896ce19f506e237747e4d45'
+            channelId: '589794ff6cff17260c6a9c5a'
         };
         return _this;
     }
@@ -24519,6 +24521,7 @@ var MainChat = function (_React$Component) {
     _createClass(MainChat, [{
         key: 'loadMessages',
         value: function loadMessages(newId) {
+            //console.log(newId);
             this.setState({ channelId: newId });
         }
     }, {

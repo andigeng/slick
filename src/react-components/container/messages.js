@@ -23,9 +23,8 @@ class Messages extends React.Component {
 
     componentWillReceiveProps(nextProps){
         if (nextProps.channelId !== this.props.channelId){
-            console.log('You should update now!');
-            this.setState({channelId:nextProps.channelId});
             this.populateNewList(nextProps.channelId);
+            this.setState({channelId:nextProps.channelId});
         }
     }
 
@@ -38,18 +37,21 @@ class Messages extends React.Component {
             }
             const messageIdArray = response.result.messages;
             const filledList = [];
-            for (var i=0; i < messageIdArray.length; i++) {
-                const messageUrl = 'api/message/' + messageIdArray[i];
-                API.get(messageUrl, {}, (error, response) => {
-                    if (error){
-                        console.log('FAILED' + error);
-                        return;
-                    }
-                    filledList.push(response.result);
-                    this.setState( {list: filledList} );
-                });
+            if (messageIdArray.length === 0) {
+                this.setState({list:[]});
+            } else {
+                for (var i=0; i < messageIdArray.length; i++) {
+                    const messageUrl = 'api/message/' + messageIdArray[i];
+                    API.get(messageUrl, {}, (error, response) => {
+                        if (error){
+                            console.log('FAILED' + error);
+                            return;
+                        }
+                        filledList.push(response.result);
+                        this.setState( {list: filledList} );
+                    });
+                }    
             }
-            this.setState( {list:filledList} );
         });
     }
 
@@ -59,7 +61,7 @@ class Messages extends React.Component {
                 console.log('ERROR: ', error);
                 return;
             }
-            let updatedList = Object.assign([], this.state.channelId);
+            let updatedList = Object.assign([], this.state.list);
             updatedList.push(response.result);
             this.setState( {list: updatedList} );
             const url = 'api/channel/' + this.state.channelId;

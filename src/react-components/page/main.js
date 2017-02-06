@@ -7,11 +7,12 @@ class MainChat extends React.Component{
     constructor(){
         super();
         this.state = ({
-            channelId:'5896ce19f506e237747e4d45'
+            channelId:'589794ff6cff17260c6a9c5a'
         });
     }
 
     loadMessages(newId){
+        //console.log(newId);
         this.setState({channelId: newId})
     }
 
