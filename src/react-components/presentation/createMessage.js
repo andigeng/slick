@@ -21,6 +21,7 @@ class CreateMessage extends React.Component{
     }
 
     sendMessage(){
+        console.log('HI!@@@');
         this.props.onSend(this.state.message);
         this.setState( {message:{name:'', body:''}});
     }

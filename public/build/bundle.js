@@ -9657,7 +9657,7 @@ var Channels = function (_React$Component) {
 
         _this.state = {
             list: [],
-            selected: 0
+            selected: -1
         };
         return _this;
     }
@@ -9786,6 +9786,7 @@ var Messages = function (_React$Component) {
         value: function componentDidMount() {
             this.setState({ channelId: this.props.channelId });
             this.populateNewList(this.props.channelId);
+            this.checkUpdate();
         }
     }, {
         key: 'componentWillReceiveProps',
@@ -9844,6 +9845,54 @@ var Messages = function (_React$Component) {
                         console.log('error: ', err);
                     }
                 });
+            });
+        }
+    }, {
+        key: 'checkUpdate',
+        value: function checkUpdate() {
+            var _this4 = this;
+
+            setTimeout(function () {
+                var url = 'api/channel/' + _this4.state.channelId;
+                _utils.API.get(url, {}, function (error, response) {
+                    if (error) {
+                        console.log('error: ', error);
+                        return;
+                    }
+                    var channelMessages = response.result.messages;
+                    var numMessagesNow = _this4.state.list.length;
+                    console.log(numMessagesNow);
+                    var numMessagesNew = response.result.messages.length;
+                    if (numMessagesNow !== numMessagesNew) {
+                        console.log('theres eben a change!!!!');
+                        for (var i = numMessagesNow; i < numMessagesNew; i++) {
+                            console.log(i);
+                            _this4.pushMessageToScreen(channelMessages[i]);
+                            console.log(channelMessages[i]);
+                        }
+                    }
+                });
+                console.log('heyo');
+                _this4.checkUpdate();
+            }, 250);
+        }
+    }, {
+        key: 'pushMessageToScreen',
+        value: function pushMessageToScreen(messageId) {
+            var _this5 = this;
+
+            var url = '/api/message/' + messageId;
+            _utils.API.get(url, {}, function (error, response) {
+                if (error) {
+                    console.log('error: ', error);
+                    return;
+                }
+                console.log('THE CURERNT STATE???', _this5.state.list);
+                var filledList = Object.assign([], _this5.state.list);
+                console.log(response.result);
+                filledList.push(response.result);
+                _this5.setState({ list: filledList });
+                console.log(_this5.state.list);
             });
         }
     }, {
@@ -10117,6 +10166,7 @@ var CreateMessage = function (_React$Component) {
     }, {
         key: 'sendMessage',
         value: function sendMessage() {
+            console.log('HI!@@@');
             this.props.onSend(this.state.message);
             this.setState({ message: { name: '', body: '' } });
         }
@@ -24513,7 +24563,7 @@ var MainChat = function (_React$Component) {
         var _this = _possibleConstructorReturn(this, (MainChat.__proto__ || Object.getPrototypeOf(MainChat)).call(this));
 
         _this.state = {
-            channelId: '589794ff6cff17260c6a9c5a'
+            channelId: ''
         };
         return _this;
     }

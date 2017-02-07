@@ -7,7 +7,7 @@ class MainChat extends React.Component{
     constructor(){
         super();
         this.state = ({
-            channelId:'589794ff6cff17260c6a9c5a'
+            channelId:''
         });
     }
 

@@ -19,6 +19,7 @@ class Messages extends React.Component {
     componentDidMount(){
         this.setState({channelId:this.props.channelId});
         this.populateNewList(this.props.channelId);
+        this.checkUpdate();    
     }
 
     componentWillReceiveProps(nextProps){
@@ -75,6 +76,48 @@ class Messages extends React.Component {
         });
     }
 
+    checkUpdate(){
+        setTimeout( () => {
+            const url = 'api/channel/' + this.state.channelId;
+            API.get(url, {}, (error, response) => {
+                if (error){
+                    console.log('error: ', error);
+                    return;
+                }
+                const channelMessages = response.result.messages;
+                const numMessagesNow = this.state.list.length;
+                console.log(numMessagesNow);
+                const numMessagesNew = response.result.messages.length;
+                if (numMessagesNow !== numMessagesNew) {
+                    console.log('theres eben a change!!!!') 
+                    for (var i = numMessagesNow; i < numMessagesNew; i++){
+                        console.log(i);
+                        this.pushMessageToScreen(channelMessages[i]);
+                        console.log(channelMessages[i]);
+                    }
+                }
+            });
+            console.log('heyo');
+            this.checkUpdate();
+        }, 250);
+    }
+
+    pushMessageToScreen(messageId){
+        const url = '/api/message/' + messageId;
+        API.get(url, {}, (error, response) => {
+            if (error){
+                console.log('error: ', error);
+                return;
+            }
+            console.log('THE CURERNT STATE???', this.state.list);
+            const filledList = Object.assign([], this.state.list);
+            console.log(response.result);
+            filledList.push(response.result);
+            this.setState({list: filledList})
+            console.log(this.state.list);
+        });
+    }
+
     render(){
         const messages = this.state.list.map((message, i) =>  {
             return (
@@ -112,3 +155,4 @@ export default Messages;
         // API.post('api/channel', newChat, (error, response) => {
         //     return;
         // });
+

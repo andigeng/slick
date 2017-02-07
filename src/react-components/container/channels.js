@@ -12,7 +12,7 @@ class Channels extends React.Component{
         super();
         this.state = { 
             list:[], 
-            selected:0 
+            selected:-1 
         };
     }
 
